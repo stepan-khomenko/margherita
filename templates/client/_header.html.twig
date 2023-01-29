@@ -1,0 +1,15 @@
+<ul class="nav justify-content-around">
+    {% if path != 'pizza' %}
+        <li class="nav-item">
+            <a class="nav-link" href="#">Nos pizzas</a>
+        </li>
+    {% endif %}
+    {% if path != 'allergy' %}
+       <li class="nav-item">
+            <a class="nav-link active" href="#">Mes allergies</a>
+        </li>
+    {% endif %}
+    <li>
+        <a class="nav-link disabled" href="#">{{ fullName }}</a>
+    </li>
+</ul>
