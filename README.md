@@ -5,5 +5,7 @@ _Simple test symfony project_
 
 ---
 * two users are already inserted
-    1. adriano.celentano@margherita.com:admin
-    2. tom.cruise@test.com:client
+    * adriano.celentano@margherita.com:admin
+    * tom.cruise@test.com:client
+* run CLI comand
+    * composer run-script run
