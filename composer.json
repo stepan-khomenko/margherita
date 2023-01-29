@@ -97,6 +97,7 @@
             "@auto-scripts"
         ],
         "run": [
+            "composer install",
             "symfony console doctrine:migrations:migrate",
             "symfony server:start"
         ]
