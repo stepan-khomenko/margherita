@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
@@ -28,6 +30,14 @@ class User
     #[ORM\ManyToOne(inversedBy: 'users')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Role $role = null;
+
+    #[ORM\ManyToMany(targetEntity: Ingredient::class, inversedBy: 'users')]
+    private Collection $allergies;
+
+    public function __construct()
+    {
+        $this->allergies = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -90,6 +100,39 @@ class User
     public function setRole(?Role $role): self
     {
         $this->role = $role;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Ingredient>
+     */
+    public function getAllergies(): Collection
+    {
+        return $this->allergies;
+    }
+
+    public function addAllergy(Ingredient $allergy): self
+    {
+        if (!$this->allergies->contains($allergy)) {
+            $this->allergies->add($allergy);
+        }
+
+        return $this;
+    }
+
+    public function removeAllergy(Ingredient $allergy): self
+    {
+        $this->allergies->removeElement($allergy);
+
+        return $this;
+    }
+
+    public function removeAllAllergies(): self
+    {
+        foreach ($this->allergies as $allergy) {
+            $this->removeAllergy($allergy);
+        }
 
         return $this;
     }

@@ -95,6 +95,10 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
+        ],
+        "run": [
+            "symfony console doctrine:migrations:migrate",
+            "symfony server:start"
         ]
     },
     "conflict": {

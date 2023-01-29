@@ -1,0 +1,31 @@
+<ul class="nav justify-content-around">
+    <li class="nav-item">
+        <h2>Margherita</h2>
+    </li>
+    
+    {% if path != 'pizza' %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('pizza') }}">Nos pizzas</a>
+        </li>
+    {% endif %}
+    {% if path != 'allergy' and role == 'client' %}
+       <li class="nav-item">
+            <a class="nav-link active" href="{{ path('allergy') }}">Mes allergies</a>
+        </li>
+    {% endif %}
+    {% if role == 'admin' %}
+        <li class="nav-item">
+            <a class="nav-link active" href="/admin">Espace administratif</a>
+        </li>
+    {% endif %}
+        <li>
+            <ul class="nav justify-content-around">
+                <li>
+                    <a class="nav-link disabled" href="#">{{ fullName }}</a>
+                </li>
+                <li>
+                    <a class="nav-link active" href="{{ path('logout') }}">Log out</a>
+                </li>
+            </ul>
+        </li>
+</ul>

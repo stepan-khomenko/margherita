@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ include('_header.html.twig') }}
+
+    <h3 class="m-4 text-center">Nos pizzas</h3>
+    <div class="container">
+        {% for pizza in pizzas %}
+            <div>
+                {% if pizza.isContainsAllergic %}
+                    <div class="badge bg-danger">Cette pizza contient des ingrédients dont vous êtes allergiques</div>
+                {% endif %}
+                <a class="row-container" href="{{ path('get_pizza', {id: pizza.id}) }}">
+                    <img href="{{ pizza.photo }}" alt="{{ pizza.name }}"/>
+                    <div>{{ pizza.name }}</div>
+                    <div>
+                        {% for ingredient in pizza.ingredients %}
+                            <span class="badge {% if ingredient.id in allergies %}
+                                                    bg-danger
+                                               {% else %}
+                                                    bg-light text-dark
+                                               {% endif %}"
+                            >
+                                {{ ingredient }}
+                            </span>
+                        {% endfor %}
+                    </div>
+                    <div class="nowrap">
+                        € {{ pizza.ingredients|reduce((carry, v) => carry + v.price) }}.00
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
