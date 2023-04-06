@@ -4,6 +4,8 @@
 _Simple test symfony project_
 
 ---
+* database name
+    * margherita
 * two users are already inserted
     * adriano.celentano@margherita.com:admin
     * tom.cruise@test.com:client
